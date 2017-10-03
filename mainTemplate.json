@@ -1029,7 +1029,7 @@
         },
         "peer-info-readonly-key": {
             "type": "string",
-            "value": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('dbSettings').dbAccName), variables('apis').apiVersionDocumentDb).primaryReadonlyMasterKey]"
+            "value": "[listKeys(resourceId('Microsoft.DocumentDB/databaseAccounts', variables('dbSettings').dbAccName), variables('apis').apiVersionDocumentDb).primaryMasterKey]"
         },
         "pair-Gateway-PS-Module": {
             "type": "string",
