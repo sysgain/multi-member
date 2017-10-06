@@ -44,7 +44,6 @@ function setup_node_info
         getalldbs=`sh getpost-utility.sh $masterkey "${endpointurl}dbs" get`
         dbcount=`echo $getalldbs | grep "\"id\":.*"`
         dbdata="{\"id\":\"${dbname}\"}"
-        #colldata="{\"id\":\"${collname}\"}"
         colldata="{\"id\":\"${collname}\",\"defaultTtl\": $expirytime}"
         #check wheather database exists if not create testdb database
         if [ "$dbcount" == "" ]
@@ -131,7 +130,7 @@ function setup_node_info
 
 function setup_bootnodes
 {
-        #wait for at least 5 nodes to comeup
+        #wait for at least NUM_MN_NODES +1  nodes to comeup
         hostcount=0
         nodecount=`expr $NUM_MN_NODES + 1`
         echo "node_count is: $nodecount"
@@ -151,13 +150,6 @@ function setup_bootnodes
         done
         echo "Nodes: ${NODES[*]}"
         echo "Node URLS are: ${NODESURLS[*]}"
-        #finding the available IP addresses and storing it in an array
-        #for varip in `seq 0 $(($hostcount - 1 ))`; do
-        #IPS[$varip]=`echo $alldocs | grep -Po '"ipaddress":.*?",' |sed -n "$(($varip + 1 ))p" | cut -d "," -f1 | cut -d ":" -f2 | tr -d "\""`
-        #done
-        #echo "IP Addresses: ${IPS[*]}"
-
-        #finding atleast 2 bootnodes
         count=0
         for var in `seq 0 $(($hostcount - 1 ))`; do
                 reg=`echo ${NODES[$var]} | grep "^mn.*$regionid.*"`
