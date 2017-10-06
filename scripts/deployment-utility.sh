@@ -45,28 +45,29 @@ function setup_node_info
         dbcount=`echo $getalldbs | grep "\"id\":.*"`
         dbdata="{\"id\":\"${dbname}\"}"
         colldata="{\"id\":\"${collname}\",\"defaultTtl\": $expirytime}"
-        #check wheather database exists if not create testdb database
+        #check whether database exists if not create testdb database
         if [ "$dbcount" == "" ]
         then
         `sh getpost-utility.sh $masterkey "${endpointurl}dbs" "post" "$dbdata"`
         echo ".........\"$dbname\" database got created......... "
+	getalldbs=`sh getpost-utility.sh $masterkey "${endpointurl}dbs" get`
         else
         echo "database already present"
         fi
-        getalldbs=`sh getpost-utility.sh $masterkey "${endpointurl}dbs" get`
         echo "Database details are: $getalldbs"
 
-        #check wheather collection  exists if not create testcolls collection
+        #check whether collection  exists if not create testcolls collection
         getallcolls=`sh getpost-utility.sh $masterkey "${endpointurl}dbs/${dbname}/colls" get`
         collscount=`echo $getallcolls | grep "\"id\":.*"`
         if [ "$collscount" == "" ]
         then
         `sh getpost-utility.sh $masterkey "${endpointurl}dbs/${dbname}/colls" "post" "$colldata"`
         echo ".........\"$colldata\" collection got created......... "
+	getallcolls=`sh getpost-utility.sh $masterkey "${endpointurl}dbs/${dbname}/colls" get`
         else
         echo "collection  already present"
         fi
-        getallcolls=`sh getpost-utility.sh $masterkey "${endpointurl}dbs/${dbname}/colls" get`
+        
         echo "Collection details are: $getallcolls"
         timestamp=`date +%s`
         
