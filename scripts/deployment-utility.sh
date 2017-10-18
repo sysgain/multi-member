@@ -104,9 +104,12 @@ function setup_node_info
         # Generate boot node URLs
         ##########################
          NODE=`echo ${hostname}`
+	 echo "NODEID length is:`echo ${NODE_ID} | wc -c`"
+	 NODE_ID=`echo ${NODE_ID} | cut -c1-128`
+         echo "NODE ID is: ${NODE_ID}"
          #BOOTNODE_URLS="${BOOTNODE_URLS} --bootnodes enode://${NODE_ID}@#$NODE#:${GETH_IPC_PORT}";
-         bootnodeurlpernode=" --bootnodes enode://${NODE_ID}@#$NODE#:${GETH_IPC_PORT}";
-         bootnodeurlwithip=" --bootnodes enode://${NODE_ID}@#$NODE#${ipaddress}:${GETH_IPC_PORT}"
+         bootnodeurlpernode=" --bootnodes enode://${NODE_ID}@#${NODE}#:${GETH_IPC_PORT}";
+         bootnodeurlwithip=" --bootnodes enode://${NODE_ID}@#${NODE}#${ipaddress}:${GETH_IPC_PORT}"
         #preparing document details
          if [ $NODE_TYPE -eq 1 ];then
          docdata="{\"id\":\"${NODE}\",\"hostname\": \"${NODE}\",\"ipaddress\": \"${ipaddress}\",\"consortiumID\": \"NA\",\"regionId\": \"${regionid}\",\"bootNodeUrlNode\": \"${bootnodeurlwithip}\",\"bootNodeUrl\": \"${bootnodeurlpernode}\"}"
