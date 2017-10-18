@@ -89,6 +89,7 @@ function setup_node_info
                                 break;
                 fi
         done
+	NODE_ID=`echo ${NODE_ID} | cut -c1-128`
         ##################################
         # Check for empty node keys or IDs
         ##################################
@@ -105,7 +106,6 @@ function setup_node_info
         ##########################
          NODE=`echo ${hostname}`
 	 echo "NODEID length is:`echo ${NODE_ID} | wc -c`"
-	 NODE_ID=`echo ${NODE_ID} | cut -c1-128`
          echo "NODE ID is: ${NODE_ID}"
          #BOOTNODE_URLS="${BOOTNODE_URLS} --bootnodes enode://${NODE_ID}@#$NODE#:${GETH_IPC_PORT}";
          bootnodeurlpernode=" --bootnodes enode://${NODE_ID}@#${NODE}#:${GETH_IPC_PORT}";
