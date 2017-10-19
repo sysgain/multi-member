@@ -180,8 +180,8 @@ function setup_bootnodes
 function setup_system_ethereum_account
 {
 	PASSWD_FILE="$GETH_HOME/passwd.info";
-	printf %s $PASSWD > $PASSWD_FILE;
-
+	printf "%s" $PASSWD > $PASSWD_FILE;
+        echo "passwd file is: ${PASSWD_FIL}";
 	PRIV_KEY=`echo "$PASSPHRASE" | sha256sum | sed s/-// | sed "s/ //"`;
 	printf "%s" $PRIV_KEY > $HOMEDIR/priv_genesis.key;
 	PREFUND_ADDRESS=`geth --datadir $GETH_HOME --password $PASSWD_FILE account import $HOMEDIR/priv_genesis.key | grep -oP '\{\K[^}]+'` || unsuccessful_exit "failed to import pre-fund account";
@@ -196,7 +196,7 @@ function initialize_geth
 	# Initialize geth for private network
 	####################
 	if [ $NODE_TYPE -eq 1 ] && [ $MN_NODE_SEQNUM -lt $NUM_BOOT_NODES ]; then #Boot node logic
-		printf %s ${NODE_KEY} > $NODEKEY_SHARE_PATH;
+		printf "%s" ${NODE_KEY} > $NODEKEY_SHARE_PATH;
 	fi
 
 	#################
