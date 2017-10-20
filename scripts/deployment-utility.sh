@@ -211,6 +211,8 @@ function initialize_geth
 	#################
 	# Initialize geth
 	#################
+	echo "GETH_HOME=$GETH_HOME"
+	echo "GENESIS_FILE_PATH=`cat $GENESIS_FILE_PATH`"
 	geth --datadir $GETH_HOME -verbosity 6 init $GENESIS_FILE_PATH >> $GETH_LOG_FILE_PATH 2>&1;
 	if [ $? -ne 0 ]; then
 		exit 1;
@@ -220,6 +222,7 @@ function initialize_geth
 
 function setup_admin_website
 {
+	echo "===== Started setup_admin_website =====";
 	POWERSHELL_SHARE_PATH="$ETHERADMIN_HOME/public/ConsortiumBridge.psm1"
 	CLI_SHARE_PATH="$ETHERADMIN_HOME/public/ConsortiumBridge.sh"
 
@@ -255,6 +258,7 @@ function setup_admin_website
 
 function create_config
 {
+	echo "===== Started create_config =====";
 	##################
 	# Create conf file
 	##################
@@ -290,6 +294,7 @@ function create_config
 
 function setup_rc_local
 {
+	echo "===== Started setup_rc_local =====";
 	##########################################
 	# Setup rc.local for service start on boot
 	##########################################
