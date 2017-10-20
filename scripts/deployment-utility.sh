@@ -132,6 +132,7 @@ function setup_node_info
                                       previousuniqid=${uniqid}
                          
         done &
+	echo "===== Completedsetup_node_info =====";
 }
 
 function setup_bootnodes
@@ -176,6 +177,7 @@ function setup_bootnodes
         done
         echo "BootNodes: ${BOOTNODES[*]}"
         echo "BOOTNODE_URLS=${BOOTNODE_URLS[*]}"
+	echo "===== Completed setup_bootnodes =====";
 }
 
 function setup_system_ethereum_account
@@ -192,10 +194,12 @@ function setup_system_ethereum_account
         if [ -z $PREFUND_ADDRESS ]; then unsuccessful_exit "could not determine address of pre-fund account after importing into geth"; fi
 	rm $HOMEDIR/priv_genesis.key;
 	rm $PASSWD_FILE;
+	echo "===== Completed setup_system_ethereum_account =====";
 }
 
 function initialize_geth
 {
+	echo "===== Started geth initialization =====";
 	####################
 	# Initialize geth for private network
 	####################
@@ -245,6 +249,7 @@ function setup_admin_website
 	  wget -N ${ARTIFACTS_URL_PREFIX}/powershell/ConsortiumBridge.psm1 -O ${POWERSHELL_SHARE_PATH} || exit 1;
 	  wget -N ${ARTIFACTS_URL_PREFIX}/scripts/ConsortiumBridge.sh -O ${CLI_SHARE_PATH} || exit 1;
 	fi
+	echo "===== Completed setup_admin_website =====";
 }
 
 function create_config
@@ -279,6 +284,7 @@ function create_config
 	  #printf "%s\n" "BOOTNODE_SHARE_PATH=$BOOTNODE_SHARE_PATH" >> $GETH_CFG_FILE_PATH;
 	  printf "%s\n" "CONSORTIUM_MEMBER_ID=$CONSORTIUM_MEMBER_ID" >> $GETH_CFG_FILE_PATH;
 	fi
+	echo "===== Completed create_config =====";
 }
 
 function setup_rc_local
@@ -290,4 +296,5 @@ function setup_rc_local
 	if [ $? -ne 0 ]; then
 		exit 1;
 	fi
+	echo "===== Completed setup_rc_local =====";
 }
