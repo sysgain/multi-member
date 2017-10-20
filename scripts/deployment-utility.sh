@@ -179,7 +179,9 @@ function setup_bootnodes
 
 function setup_system_ethereum_account
 {
+        echo "GETH_HOME value is:$GETH_HOME"
 	PASSWD_FILE="$GETH_HOME/passwd.info";
+	echo "Password value is:$PASSWD"
 	printf "%s" $PASSWD > $PASSWD_FILE;
         echo "passwd file is: ${PASSWD_FIL}";
 	PRIV_KEY=`echo "$PASSPHRASE" | sha256sum | sed s/-// | sed "s/ //"`;
