@@ -212,8 +212,7 @@ function initialize_geth
 	# Initialize geth
 	#################
 	echo "GETH_HOME=$GETH_HOME"
-	genesisFile=`cat $GENESIS_FILE_PATH`
-	echo "genesisFile is="${genesisFile}""
+	echo "genesisFile path is=$GENESIS_FILE_PATH"
 	rm -rf $GETH_HOME/geth/chaindata
 	geth --datadir $GETH_HOME -verbosity 6 init $GENESIS_FILE_PATH >> $GETH_LOG_FILE_PATH 2>&1;
 	if [ $? -ne 0 ]; then
