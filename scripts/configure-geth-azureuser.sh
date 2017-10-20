@@ -105,9 +105,9 @@ else
 	##########################################################################
 	# Setup Genesis file and pre-allocated account
 	##########################################################################
+	echo "===========================Genesis block is NOT specified===========================";
 	setup_system_ethereum_account
-	
-	
+		
 	cd $HOMEDIR
 	wget -N ${ARTIFACTS_URL_PREFIX}/ethereum/genesis-template.json || exit 1;
 	# Scale difficulty: Target difficulty scales with number of miners
