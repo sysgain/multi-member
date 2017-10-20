@@ -89,6 +89,7 @@ function setup_node_info
                                 break;
                 fi
         done
+	echo "NODEID length is:`echo ${NODE_ID} | wc -c`"
 	NODE_ID=`echo ${NODE_ID} | cut -c1-128`
         ##################################
         # Check for empty node keys or IDs
