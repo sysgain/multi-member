@@ -191,7 +191,8 @@ function setup_system_ethereum_account
 	printf "%s" $PRIV_KEY > $HOMEDIR/priv_genesis.key;
 	echo "Priv Key is:`cat $HOMEDIR/priv_genesis.key`"
 	PREFUND_ADDRESS=`geth --datadir $GETH_HOME --password $PASSWD_FILE account import $HOMEDIR/priv_genesis.key | grep -oP '\{\K[^}]+'` || unsuccessful_exit "failed to import pre-fund account";
-        if [ -z $PREFUND_ADDRESS ]; then unsuccessful_exit "could not determine address of pre-fund account after importing into geth"; fi
+        echo "Prefund-address is : $PREFUND_ADDRESS"
+	if [ -z $PREFUND_ADDRESS ]; then unsuccessful_exit "could not determine address of pre-fund account after importing into geth"; fi
 	rm $HOMEDIR/priv_genesis.key;
 	rm $PASSWD_FILE;
 	echo "===== Completed setup_system_ethereum_account =====";
