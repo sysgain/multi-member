@@ -33,7 +33,7 @@ PEERINFOCOLL=${23}
 #########################################################################
 # Globals
 #########################################################################
-declare -a NODE_KEYS
+NODE_KEYS=""
 PREFUND_ADDRESS=""
 declare -a BOOTNODES
 BOOTNODE_URLS="";
