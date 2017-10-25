@@ -101,15 +101,9 @@ echo "remotepkey=$remotedocdbprimarykey"
 cd $HOMEDIR;
 hostcount=0
 allremotedocs=""
-while sleep 10; do
-        allremotedocs=`sh getpost-utility.sh $remotedocdbprimarykey "${remoteendpointurl}dbs/${remotedbname}/colls/${remotecollname}/docs" get`
-        echo "allRemotedocs: $allremotedocs"
-        hostcount=`echo $allremotedocs | grep -Po '"bootNodeUrlNode":.*?",' | cut -d "," -f1 | cut -d '"' -f4 | wc -l`
-        if [ $hostcount -ge $nodecount ]; then
-           break
-        fi
-done
-#RNODES=`echo $allremotedocs | grep -Po '"remoteBootNodeUrls":.*?",' | cut -d "," -f1 | cut -d '"' -f4`
+allremotedocs=`sh getpost-utility.sh $remotedocdbprimarykey "${remoteendpointurl}dbs/${remotedbname}/colls/${remotecollname}/docs" get`
+echo "allRemotedocs: $allremotedocs"
+hostcount=`echo $allremotedocs | grep -Po '"bootNodeUrlNode":.*?",' | cut -d "," -f1 | cut -d '"' -f4 | wc -l`
 echo "hostcount=$hostcount"
 for var in `seq 0 $(($hostcount - 1 ))`; do
 RNODES[$var]=`echo $allremotedocs | grep -Po '"bootNodeUrlNode":.*?",' | cut -d "," -f1 | cut -d '"' -f4 | sed -n "$(( $var + 1 ))p"`
