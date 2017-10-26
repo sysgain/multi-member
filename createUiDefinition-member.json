@@ -1112,6 +1112,7 @@
             }
         ],
         "outputs": {
+            "location": "[location()]",
             "namePrefix": "[basics('namePrefix')]",
             "mode": "Member",
             "regionCount": "[steps('regCnt').regionCnt]",

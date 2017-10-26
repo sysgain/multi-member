@@ -1123,6 +1123,7 @@
             }
         ],
         "outputs": {
+            "location": "[location()]",
             "namePrefix": "[basics('namePrefix')]",
             "mode": "Single",
             "regionCount": "[steps('regCnt').regionCnt]",
