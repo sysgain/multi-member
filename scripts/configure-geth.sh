@@ -40,5 +40,5 @@ for LOOPCOUNT in `seq 1 2`; do
 	fi
 done
 
-echo "One or more commands failed after 5 tries. Deployment failed." >> $CONFIG_LOG_FILE_PATH;
+echo "One or more commands failed after 2 tries. Deployment failed." >> $CONFIG_LOG_FILE_PATH;
 exit 1
