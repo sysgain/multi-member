@@ -8,7 +8,7 @@
                 "name": "namePrefix",
                 "type": "Microsoft.Common.TextBox",
                 "label": "Resource prefix",
-                "toolTip": "String used as a base for naming resources (2 to 4 alphanumeric characters without whitespace).  A unique hash is prepended to the string for some resources, while resource-specific information is appended.",
+                "toolTip": "String used as a base for naming resources (2 to 4 alphanumeric characters without whitespace). A unique hash is prepended to the string for some resources, while resource-specific information is appended.",
                 "constraints": {
                     "required": true,
                     "regex": "^[a-z][a-z0-9-]{1,3}$",
