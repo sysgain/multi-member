@@ -35,7 +35,7 @@ function setup_dependencies
 
         # /usr/bin is in $PATH by default, we'll put our binaries there
         sudo cp geth-alltools-linux-amd64-1.7.1-05101641/* /usr/bin/ || exit 1;
-        echo "===== Completed  installing prerequisite packages =====";
+        echo "===== Completed installing prerequisite packages =====";
 }
 
 function setup_node_info
@@ -132,7 +132,7 @@ function setup_node_info
                                       previousuniqid=${uniqid}
                          
         done &
-	echo "===== Completedsetup_node_info =====";
+	echo "===== Completed setup_node_info =====";
 }
 
 function setup_bootnodes
