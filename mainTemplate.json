@@ -6,7 +6,7 @@
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Resource group name"
+                "description": "Resource group location"
             }
         },
         "namePrefix": {
@@ -19,7 +19,7 @@
         },
         "mode": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "Leader",
             "allowedValues": [
                 "Leader",
                 "Member",
@@ -31,7 +31,7 @@
         },
         "regionCount": {
             "type": "int",
-            "defaultValue": "",
+            "defaultValue": 1,
             "allowedValues": [
                 1,
                 2,
@@ -91,7 +91,7 @@
         },
         "adminUsername": {
             "type": "string",
-            "defaultValue": "gethadmin",
+            "defaultValue": "",
             "metadata": {
                 "description": "Administrator username of each deployed VM (alphanumeric characters only)"
             }
@@ -122,6 +122,7 @@
             "type": "int",
             "minValue": 0,
             "maxValue": 255,
+            "defaultValue" : 0,
             "metadata": {
                 "description": "Unique Identifier for the current member of this consortium."
             }
@@ -142,7 +143,7 @@
         },
         "numMiningNodesRegion": {
             "type": "int",
-            "defaultValue": "",
+            "defaultValue": 2,
             "metadata": {
                 "description": "Number of mining nodes to create for each consortium member."
             },
@@ -185,7 +186,7 @@
         },
         "numTXNodesRegion": {
             "type": "int",
-            "defaultValue": "",
+            "defaultValue": 1,
             "metadata": {
                 "description": "Number of load balanced transaction nodes"
             },
@@ -353,7 +354,7 @@
         "dbSettings": {
             "dbAccName": "[concat(variables('namingInfix'), '-registrar')]",
             "dbKind": "GlobalDocumentDB",
-            "failoverRegion1": "[resourceGroup().location]"
+            "failoverRegion1": "[parameters('location_2')]"
         },
         "txVmssSettings": {
             "resourceGuid": "[variables('resourceGuid')]",
@@ -644,11 +645,13 @@
         "Member3": "1",
         "Member4": "1",
         "Member5": "1",
+
+        "consortiumDataCurrentUrl": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
         "scriptReqSingle": [
             {
                 "fileUri": "[variables('leaderScriptUrl')]",
                 "filename": "[variables('leaderFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -658,7 +661,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -668,7 +671,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -678,7 +681,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -688,7 +691,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -700,7 +703,7 @@
             {
                 "fileUri": "[variables('leaderScriptUrl')]",
                 "filename": "[variables('leaderFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -710,7 +713,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -720,7 +723,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -730,7 +733,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -740,7 +743,7 @@
             {
                 "fileUri": "[variables('memberScriptUrl')]",
                 "filename": "[variables('memberFilename')]",
-                "consortiumData": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com')]",
+                "consortiumData": "[variables('consortiumDataCurrentUrl')]",
                 "remotePeerInfoEndpoint": "NA",
                 "remotePeerInfoPrimaryKey": "NA",
                 "remotePeerInfoDbName": "NA",
@@ -804,11 +807,11 @@
         "gatewayIdRegion1Leader": "[concat(resourceGroup().id,'/providers/Microsoft.Network/virtualNetworkGateways/',variables('namingInfix'),'-gateway-',variables('suffixArray')[0])]",
         "gatewayIdRegion1Member": "[concat(resourceGroup().id,'/providers/Microsoft.Network/virtualNetworkGateways/',variables('namingInfix'),'-gateway-',variables('suffixArray')[0])]",
         "pairGatewayPsModuleSingle": "NA",
-        "pairGatewayPsModuleLeader": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com/ConsortiumBridge.psm1')]",
-        "pairGatewayPsModuleMember": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com/ConsortiumBridge.psm1')]",
+        "pairGatewayPsModuleLeader": "[concat(variables('consortiumDataCurrentUrl'),'/ConsortiumBridge.psm1')]",
+        "pairGatewayPsModuleMember": "[concat(variables('consortiumDataCurrentUrl'),'/ConsortiumBridge.psm1')]",
         "pairGatewayAzureCliScriptSingle": "NA",
-        "pairGatewayAzureCliScriptLeader": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com/ConsortiumBridge.sh')]",
-        "pairGatewayAzureCliScriptMember": "[concat('http://',variables('namingInfix'), '-dns-',variables('suffixArray')[0],'.',variables('locationArray')[0],'.cloudapp.azure.com/ConsortiumBridge.sh')]"
+        "pairGatewayAzureCliScriptLeader": "[concat(variables('consortiumDataCurrentUrl'),'/ConsortiumBridge.sh')]",
+        "pairGatewayAzureCliScriptMember": "[concat(variables('consortiumDataCurrentUrl'),'/ConsortiumBridge.sh')]"
     },
     "resources": [
         {
