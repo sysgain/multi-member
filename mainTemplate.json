@@ -351,11 +351,29 @@
             "sku": "16.04.0-LTS",
             "version": "latest"
         },
+        "singleRegion": [
+            {
+                "locationName": "[variables('dbSettings').writeRegionLocation]",
+                "failoverPriority": 0
+            }
+        ],
+        "multiRegion": [
+            {
+                "locationName": "[variables('dbSettings').writeRegionLocation]",
+                "failoverPriority": 0
+            },
+            {
+                "locationName": "[variables('dbSettings').readRegionLocation]",
+                "failoverPriority": 1
+            }
+        ],
         "dbSettings": {
             "dbAccName": "[concat(variables('namingInfix'), '-registrar')]",
             "dbKind": "GlobalDocumentDB",
-            "failoverRegion1": "[parameters('location_2')]"
+            "writeRegionLocation": "[parameters('location_1')]",
+            "readRegionLocation": "[parameters('location_2')]"
         },
+        "multiRegionBool": "[greater(parameters('regionCount'), 1)]",
         "txVmssSettings": {
             "resourceGuid": "[variables('resourceGuid')]",
             "vmssName": "[concat('tx-', variables('namingInfix'))]",
@@ -830,12 +848,7 @@
                     "maxIntervalInSeconds": 5,
                     "maxStalenessPrefix": 100
                 },
-                "locations": [
-                    {
-                        "locationName": "[variables('dbSettings').failoverRegion1]",
-                        "failoverPriority": 0
-                    }
-                ],
+                "locations": "[if(variables('multiRegionBool'), variables('multiRegion'), variables('singleRegion'))]",
                 "databaseAccountOfferType": "Standard",
                 "enableAutomaticFailover": true
             }
