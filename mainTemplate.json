@@ -850,7 +850,7 @@
                 },
                 "locations": "[if(variables('multiRegionBool'), variables('multiRegion'), variables('singleRegion'))]",
                 "databaseAccountOfferType": "Standard",
-                "enableAutomaticFailover": true
+                "enableAutomaticFailover": "[variables('multiRegionBool')]"
             }
         },
         {
