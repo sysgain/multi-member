@@ -6,7 +6,7 @@
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Resource group location"
+                "description": "Default resource group location"
             }
         },
         "namePrefix": {
