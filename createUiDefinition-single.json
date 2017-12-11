@@ -19,7 +19,6 @@
                 "name": "adminUsername",
                 "type": "Microsoft.Compute.UserNameTextBox",
                 "label": "VM user name",
-                "defaultValue": "gethadmin",
                 "constraints": {
                     "required": true,
                     "regex": "^[A-z][A-z0-9]{4,15}$",
